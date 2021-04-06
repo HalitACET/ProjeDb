@@ -29,11 +29,35 @@ namespace _29._03._2021_1
             dataGridView1.Columns.Add("D_Hafta", "Dersin Haftası");
             dataGridView1.Columns.Add("D_No", "Dersin Numarası");
             dataGridView1.Columns.Add("D_Video", "Dersin Videosu");
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();            dataGridView1.Columns.Add(btn);            btn.Text = "Video İzle";            btn.Name = "İzle";            btn.UseColumnTextForButtonValue = true;
+
             while (dr.Read())
             {
                 dataGridView1.Rows.Add(dr["D_Kodu"], dr["D_Hafta"], dr["D_No"], dr["D_Video"]);
+
             }
             baglanti.Close();
+
+            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            VideoTasiyici video = new VideoTasiyici();
+            video.video= dataGridView1.CurrentRow.Cells[3].Value.ToString();
+
+            Form5 frm5 = new Form5(video);
+            
+            frm5.Show();
+            this.Hide();
+
+           
         }
     }
 }

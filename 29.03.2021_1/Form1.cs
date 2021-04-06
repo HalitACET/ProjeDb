@@ -18,26 +18,29 @@ namespace _29._03._2021_1
             InitializeComponent();
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-6CRR4TF\SQLEXPRESS;Initial Catalog=ProjeDb;Integrated Security=True");
-        public void listele()
-        {
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TblOgrenciler", baglanti);
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-        }
+       
         public void temizle()
         {
-            mskTC.Text = "";
+            textBox1.Text = "";
             txtAd.Text = "";
             txtSoyad.Text = "";
             txtSifre.Text = "";
             txtEmail.Text = "";
             cmbBolum.Text = "";
-            cmbSinif.Text = "";
+            textBox2.Text = "";
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            listele();
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select Ad from TblBolumler",baglanti);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbBolum.Items.Add(dr[0].ToString());
+            }
+            baglanti.Close();
+
+
           
         }
 
@@ -45,17 +48,17 @@ namespace _29._03._2021_1
         {
             baglanti.Open();
             SqlCommand komut = new SqlCommand("INSERT INTO TblOgrenciler (O_Tc_Kimlik,O_Ad,O_Soyad,O_Sifre,[O_E-mail],O_Bolum,O_Sinif) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7)",baglanti);
-            komut.Parameters.AddWithValue("@p1",mskTC.Text);
+            komut.Parameters.AddWithValue("@p1",textBox1.Text);
             komut.Parameters.AddWithValue("@p2",txtAd.Text);
             komut.Parameters.AddWithValue("@p3",txtSoyad.Text);
             komut.Parameters.AddWithValue("@p4",txtSifre.Text);
             komut.Parameters.AddWithValue("@p5",txtEmail.Text);
             komut.Parameters.AddWithValue("@p6",cmbBolum.Text);
-            komut.Parameters.AddWithValue("@p7",cmbSinif.Text);
+            komut.Parameters.AddWithValue("@p7",textBox2.Text);
             komut.ExecuteNonQuery();
             baglanti.Close();
             MessageBox.Show("Kayıt Eklendi...");
-            listele();
+            
             temizle();
             Form2 frm = new Form2();
             frm.Show();

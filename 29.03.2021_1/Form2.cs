@@ -22,13 +22,13 @@ namespace _29._03._2021_1
         {
             baglanti.Open();
             SqlCommand komut = new SqlCommand("SELECT * FROM TblOgrenciler WHERE O_Tc_Kimlik=@p1 and O_Sifre=@p2",baglanti);
-            komut.Parameters.AddWithValue("@p1",mskTC.Text);
+            komut.Parameters.AddWithValue("@p1",textBox1.Text);
             komut.Parameters.AddWithValue("@p2",txtSifre.Text);
             SqlDataReader dr = komut.ExecuteReader();
             if (dr.Read())
             {
                 Form3 frm = new Form3();
-                frm.tc = mskTC.Text;
+                frm.tc = textBox1.Text;
                 frm.Show();
                 this.Hide();
             }
