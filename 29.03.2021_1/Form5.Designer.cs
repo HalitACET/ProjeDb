@@ -40,6 +40,8 @@
             this.lblHafta = new System.Windows.Forms.Label();
             this.lblDers = new System.Windows.Forms.Label();
             this.lblOgrenci = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,12 +152,36 @@
             this.lblOgrenci.TabIndex = 9;
             this.lblOgrenci.Text = "00";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(537, 49);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "00";
+            this.label5.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(418, 49);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(115, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Ders Haftası:";
+            this.label6.Visible = false;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1331, 761);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblOgrenci);
             this.Controls.Add(this.lblVideo);
             this.Controls.Add(this.lblHafta);
@@ -192,5 +218,7 @@
         private System.Windows.Forms.Label lblHafta;
         private System.Windows.Forms.Label lblDers;
         private System.Windows.Forms.Label lblOgrenci;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

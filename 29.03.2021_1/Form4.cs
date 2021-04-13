@@ -38,7 +38,7 @@ namespace _29._03._2021_1
 
             while (dr.Read())
             {
-                dataGridView1.Rows.Add(dr["D_Kodu"], dr["D_Hafta"], dr["D_No"], dr["D_Video"]);
+                dataGridView1.Rows.Add(dr["D_Kodu"], dr["D_Hafta"], dr["D_No"], dr["D_VideoKod"]);
 
             }
             baglanti.Close();

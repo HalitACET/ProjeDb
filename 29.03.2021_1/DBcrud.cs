@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+
 namespace _29._03._2021_1
 {
     class DBcrud
@@ -45,14 +47,15 @@ namespace _29._03._2021_1
 
         }
 
-        public SqlDataReader soru(string video)
+        public DataTable soru(string videokod)
         {
             baglan.baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları Where D_Video=@p1",baglan.baglanti);
-            komut.Parameters.AddWithValue("@p1",video);
-            SqlDataReader dr = komut.ExecuteReader();
+            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları Where D_Videokod=@p1",baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1",videokod);
+            DataTable dt = new DataTable();
+            dt.Load(komut.ExecuteReader());
             baglan.baglanti.Close();
-            return dr;
+            return dt;
         }
 
     }

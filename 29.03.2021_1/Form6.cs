@@ -12,32 +12,35 @@ namespace _29._03._2021_1
 {
     public partial class Form6 : Form
     {
-        string yol;
-        public Form6(string gvideo)
+        string Vkod;
+        public Form6(string gvideokod)
         {
             InitializeComponent();
-            yol = gvideo;
+            Vkod = gvideokod;
         }
         
         private void Form6_Load(object sender, EventArgs e)
         {
-            label1.Text = yol;
-            VT bgl = new VT();
-            bgl.baglanti.Open();
+            label1.Text = Vkod;
+          
+           
             DBcrud sorubul = new DBcrud();
-            
-            SqlDataReader dr = sorubul.soru(label1.Text);
 
-            while (dr.Read())
-            {
-                label2.Text = dr["Soru"].ToString();
-                radioButton1.Text = dr["Sec1"].ToString();
-                radioButton2.Text = dr["Sec2"].ToString();
-                radioButton3.Text = dr["Sec3"].ToString();
-                radioButton4.Text = dr["Sec4"].ToString();
-                radioButton5.Text = dr["Sec5"].ToString();
-            }
-            bgl.baglanti.Close();
+            DataTable dt = sorubul.soru(label1.Text);
+
+           
+            
+                label2.Text = dt.Rows[0]["Soru"].ToString();
+                radioButton1.Text = dt.Rows[0]["Sec1"].ToString();
+                radioButton2.Text = dt.Rows[0]["Sec2"].ToString();
+                radioButton3.Text = dt.Rows[0]["Sec3"].ToString();
+                radioButton4.Text = dt.Rows[0]["Sec4"].ToString();
+                radioButton5.Text = dt.Rows[0]["Sec5"].ToString();
+            
+           
+
+
+            
         }
     }
 }

@@ -15,7 +15,7 @@ namespace _29._03._2021_1
         {
             vt.baglanti.Open();
             DataTable dt = new DataTable();
-            SqlCommand komut = new SqlCommand("Select * from TblDers_Video inner join TblDersler on TblDersler.D_Kodu=TblDers_Video.D_Kodu inner join TblOgrenci_Dersleri on TblOgrenci_Dersleri.D_Kodu=TblDers_Video.D_Kodu Where D_Video=@p1", vt.baglanti);
+            SqlCommand komut = new SqlCommand("Select * from TblDers_Video inner join TblDersler on TblDersler.D_Kodu=TblDers_Video.D_Kodu inner join TblOgrenci_Dersleri on TblOgrenci_Dersleri.D_Kodu=TblDers_Video.D_Kodu inner join TblVideolar on TblVideolar.VideoKod=TblDers_Video.D_VideoKod Where D_VideoKod=@p1", vt.baglanti);
             komut.Parameters.AddWithValue("@p1",video);
             dt.Load(komut.ExecuteReader());
             vt.baglanti.Close();
