@@ -50,13 +50,30 @@ namespace _29._03._2021_1
         public DataTable soru(string videokod)
         {
             baglan.baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları Where D_Videokod=@p1",baglan.baglanti);
+            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları inner join TblDers_Video_Istatistik on TblDers_Video_Istatistik.D_VideoKod=TblVideo_Soruları.D_VideoKod inner join TblOgrenci_Video_Istatistik on TblOgrenci_Video_Istatistik.D_VideoKod=TblVideo_Soruları.D_VideoKod Where TblVideo_Soruları.D_VideoKod=@p1",baglan.baglanti);
             komut.Parameters.AddWithValue("@p1",videokod);
             DataTable dt = new DataTable();
             dt.Load(komut.ExecuteReader());
             baglan.baglanti.Close();
             return dt;
         }
+        public void Darttir(string Vkod)
+        {
+         baglan.baglanti.Open();
+            SqlCommand komut = new SqlCommand("Update Tbl_Video_Istatistik set DogruSay=DogruSay++ Where D_VideoKod=@p1", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1", Vkod);
+            komut.ExecuteNonQuery();
+            baglan.baglanti.Close();   
+            
+        }
+        public void Yarttir(string Vkod)
+        {
+            baglan.baglanti.Open();
+            SqlCommand komut = new SqlCommand("Update Tbl_Video_Istatistik set Yanlis=YanlisSay++ Where D_VideoKod=@p1", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1", Vkod);
+            komut.ExecuteNonQuery();
+            baglan.baglanti.Close();
 
+        }
     }
 }
