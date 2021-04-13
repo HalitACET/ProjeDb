@@ -31,12 +31,15 @@ namespace _29._03._2021_1
             lblDers.Text = dt.Rows[0]["D_Adi"].ToString();
             lblOgrenci.Text = dt.Rows[0]["O_Tc_Kimlik"].ToString();
 
+            
 
 
 
             axWindowsMediaPlayer1.URL = videon.video.ToString();
             axWindowsMediaPlayer1.settings.autoStart = true;
             axWindowsMediaPlayer1.Ctlcontrols.play();
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,6 +51,16 @@ namespace _29._03._2021_1
             //MessageBox.Show(openFileDialog1.FileName);
             //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
             //axWindowsMediaPlayer1.Ctlcontrols.play();
+        }
+
+        private void axWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState == 8)
+            {
+                Form6 frm = new Form6(lblVideo.Text);
+                frm.Show();
+            }
+            
         }
     }
 }

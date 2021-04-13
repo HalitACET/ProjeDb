@@ -26,7 +26,13 @@ namespace _29._03._2021_1
             komut.Parameters.AddWithValue("@p1", tc);
             dataGridView1.Columns.Add("D_Kodu","Ders Kodu");
             dataGridView1.Columns.Add("Adi", "Ders Adı");
-            
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            dataGridView1.Columns.Add(btn);
+            btn.Text = "Ders'e Git";
+            btn.Name = "Git";
+            btn.UseColumnTextForButtonValue = true;
+
             SqlDataReader dr = komut.ExecuteReader();
             while (dr.Read())
             {

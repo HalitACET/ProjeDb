@@ -46,23 +46,41 @@ namespace _29._03._2021_1
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("INSERT INTO TblOgrenciler (O_Tc_Kimlik,O_Ad,O_Soyad,O_Sifre,[O_E-mail],O_Bolum,O_Sinif) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7)",baglanti);
-            komut.Parameters.AddWithValue("@p1",textBox1.Text);
-            komut.Parameters.AddWithValue("@p2",txtAd.Text);
-            komut.Parameters.AddWithValue("@p3",txtSoyad.Text);
-            komut.Parameters.AddWithValue("@p4",txtSifre.Text);
-            komut.Parameters.AddWithValue("@p5",txtEmail.Text);
-            komut.Parameters.AddWithValue("@p6",cmbBolum.Text);
-            komut.Parameters.AddWithValue("@p7",textBox2.Text);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            MessageBox.Show("Kayıt Eklendi...");
+            DBcrud kayit = new DBcrud();
+            Ogrenci ogrenci = new Ogrenci();
+
             
-            temizle();
-            Form2 frm = new Form2();
-            frm.Show();
-            this.Hide();
+            bool uyemi= kayit.uyevarmi(textBox1.Text);
+            if (uyemi==false)
+            {
+                ogrenci.ad = txtAd.Text;
+                ogrenci.soyad = txtSoyad.Text;
+                ogrenci.TC = textBox1.Text;
+                ogrenci.sifre = txtSifre.Text;
+                ogrenci.email = txtEmail.Text;
+                ogrenci.bolum = cmbBolum.Text;
+                ogrenci.sinif = textBox2.Text;
+
+                bool kontrol = kayit.kayit(ogrenci);
+                if (kontrol == true)
+                {
+                    MessageBox.Show("Kayıt Eklendi...");
+                    temizle();
+                    Form2 frm = new Form2();
+                    frm.Show();
+                    this.Hide();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zaten Kayıt Var!");
+                Form2 frm = new Form2();
+                frm.Show();
+                this.Hide();
+            }
+
+            
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

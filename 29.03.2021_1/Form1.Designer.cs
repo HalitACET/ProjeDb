@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnEkle = new System.Windows.Forms.Button();
             this.txtAd = new System.Windows.Forms.TextBox();
             this.txtSoyad = new System.Windows.Forms.TextBox();
@@ -45,12 +46,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEkle
             // 
             this.btnEkle.Location = new System.Drawing.Point(165, 274);
-            this.btnEkle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEkle.Margin = new System.Windows.Forms.Padding(2);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(93, 26);
             this.btnEkle.TabIndex = 0;
@@ -61,7 +64,7 @@
             // txtAd
             // 
             this.txtAd.Location = new System.Drawing.Point(147, 93);
-            this.txtAd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAd.Margin = new System.Windows.Forms.Padding(2);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(135, 26);
             this.txtAd.TabIndex = 2;
@@ -69,7 +72,7 @@
             // txtSoyad
             // 
             this.txtSoyad.Location = new System.Drawing.Point(147, 123);
-            this.txtSoyad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSoyad.Margin = new System.Windows.Forms.Padding(2);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(135, 26);
             this.txtSoyad.TabIndex = 3;
@@ -77,7 +80,7 @@
             // txtSifre
             // 
             this.txtSifre.Location = new System.Drawing.Point(147, 152);
-            this.txtSifre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSifre.Margin = new System.Windows.Forms.Padding(2);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.PasswordChar = '*';
             this.txtSifre.Size = new System.Drawing.Size(135, 26);
@@ -86,7 +89,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(147, 182);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(135, 26);
             this.txtEmail.TabIndex = 5;
@@ -95,7 +98,7 @@
             // 
             this.cmbBolum.FormattingEnabled = true;
             this.cmbBolum.Location = new System.Drawing.Point(147, 212);
-            this.cmbBolum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbBolum.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBolum.Name = "cmbBolum";
             this.cmbBolum.Size = new System.Drawing.Size(135, 28);
             this.cmbBolum.TabIndex = 6;
@@ -173,7 +176,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(165, 305);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 26);
             this.button1.TabIndex = 16;
@@ -208,12 +211,23 @@
             this.textBox2.Size = new System.Drawing.Size(135, 26);
             this.textBox2.TabIndex = 19;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(309, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(69, 59);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(390, 373);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label8);
@@ -233,11 +247,12 @@
             this.Controls.Add(this.btnEkle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +277,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

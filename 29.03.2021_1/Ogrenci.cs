@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace _29._03._2021_1
 {
-   public class VideoTasiyici
+    class Ogrenci
     {
-        public string video { get; set; }
-       
+        public string TC, ad, soyad, sifre, email, bolum, sinif;
     }
 }

@@ -30,7 +30,11 @@ namespace _29._03._2021_1
             dataGridView1.Columns.Add("D_No", "Dersin Numarası");
             dataGridView1.Columns.Add("D_Video", "Dersin Videosu");
 
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();            dataGridView1.Columns.Add(btn);            btn.Text = "Video İzle";            btn.Name = "İzle";            btn.UseColumnTextForButtonValue = true;
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            dataGridView1.Columns.Add(btn);
+            btn.Text = "Video İzle";
+            btn.Name = "İzle";
+            btn.UseColumnTextForButtonValue = true;
 
             while (dr.Read())
             {
