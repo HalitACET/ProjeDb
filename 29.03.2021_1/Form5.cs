@@ -13,11 +13,12 @@ namespace _29._03._2021_1
     public partial class Form5 : Form
     {
         VideoTasiyici videon;
-        public Form5(VideoTasiyici video)
+        string dkod;
+        public Form5(VideoTasiyici video,string gdkod)
         {
             InitializeComponent();
             videon = video;
-        
+            dkod = gdkod;
            
         }
         
@@ -31,9 +32,9 @@ namespace _29._03._2021_1
             lblDers.Text = dt.Rows[0]["D_Adi"].ToString();
             lblOgrenci.Text = dt.Rows[0]["O_Tc_Kimlik"].ToString();
             label5.Text = dt.Rows[0]["D_VideoKod"].ToString();
+            label7.Text = dkod;
 
-
-
+            
 
 
             axWindowsMediaPlayer1.URL = lblVideo.Text;
@@ -56,12 +57,18 @@ namespace _29._03._2021_1
 
         private void axWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
-            if (e.newState == 8)
+            //tc hatalı hep 1 çekio...
+            DBcrud varmi = new DBcrud();
+            bool durum;
+          durum=varmi.Cevapvarmi(lblOgrenci.Text);
+            if (durum==false)
             {
-                Form6 frm = new Form6(label5.Text);
-                frm.Show();
+                if (e.newState == 8)
+                {
+                    Form6 frm = new Form6(label5.Text, lblOgrenci.Text, label7.Text);
+                    frm.Show();
+                }
             }
-            
         }
     }
 }

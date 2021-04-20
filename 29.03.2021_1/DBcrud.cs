@@ -50,7 +50,7 @@ namespace _29._03._2021_1
         public DataTable soru(string videokod)
         {
             baglan.baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları inner join TblDers_Video_Istatistik on TblDers_Video_Istatistik.D_VideoKod=TblVideo_Soruları.D_VideoKod inner join TblOgrenci_Video_Istatistik on TblOgrenci_Video_Istatistik.D_VideoKod=TblVideo_Soruları.D_VideoKod Where TblVideo_Soruları.D_VideoKod=@p1",baglan.baglanti);
+            SqlCommand komut = new SqlCommand("Select * from TblVideo_Soruları where D_VideoKod=@p1",baglan.baglanti);
             komut.Parameters.AddWithValue("@p1",videokod);
             DataTable dt = new DataTable();
             dt.Load(komut.ExecuteReader());
@@ -60,8 +60,15 @@ namespace _29._03._2021_1
         public void Darttir(string Vkod)
         {
          baglan.baglanti.Open();
-            SqlCommand komut = new SqlCommand("Update Tbl_Video_Istatistik set DogruSay=DogruSay++ Where D_VideoKod=@p1", baglan.baglanti);
+
+            SqlCommand komut2 = new SqlCommand("Select DogruSay From TblDers_Video_Istatistik Where D_VideoKod=@p1", baglan.baglanti);
+            komut2.Parameters.AddWithValue("@p1", Vkod);
+            int ks = Convert.ToInt16(komut2.ExecuteScalar());
+            ks++;
+
+            SqlCommand komut = new SqlCommand("Update TblDers_Video_Istatistik set DogruSay=@p2 Where D_VideoKod=@p1", baglan.baglanti);
             komut.Parameters.AddWithValue("@p1", Vkod);
+            komut.Parameters.AddWithValue("@p2",ks);
             komut.ExecuteNonQuery();
             baglan.baglanti.Close();   
             
@@ -69,11 +76,58 @@ namespace _29._03._2021_1
         public void Yarttir(string Vkod)
         {
             baglan.baglanti.Open();
-            SqlCommand komut = new SqlCommand("Update Tbl_Video_Istatistik set Yanlis=YanlisSay++ Where D_VideoKod=@p1", baglan.baglanti);
+
+            SqlCommand komut2 = new SqlCommand("Select YanlisSay From TblDers_Video_Istatistik Where D_VideoKod=@p1",baglan.baglanti);
+            komut2.Parameters.AddWithValue("@p1",Vkod);
+            int ks=Convert.ToInt16( komut2.ExecuteScalar());
+            ks++;
+            SqlCommand komut = new SqlCommand("Update TblDers_Video_Istatistik set YanlisSay=@p2 Where D_VideoKod=@p1", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p2",ks);
             komut.Parameters.AddWithValue("@p1", Vkod);
             komut.ExecuteNonQuery();
             baglan.baglanti.Close();
 
         }
+
+        public void ODarttir(string tc,string DKod,string Vkod)
+        {
+            baglan.baglanti.Open();
+            SqlCommand komut = new SqlCommand("Insert into TblOgrenci_Video_Istatistik values (@p1,@p2,@p3,1,0)", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1",tc);
+            komut.Parameters.AddWithValue("@p2",DKod);
+            komut.Parameters.AddWithValue("@p3",Vkod);
+            komut.ExecuteNonQuery();
+            baglan.baglanti.Close();
+
+        }
+
+        public void OYarttir(string tc,string DKod,string Vkod)
+        {
+            
+            baglan.baglanti.Open();
+            SqlCommand komut = new SqlCommand("Insert into TblOgrenci_Video_Istatistik values (@p1,@p2,@p3,0,1)", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1",tc);
+            komut.Parameters.AddWithValue("@p2",DKod);
+            komut.Parameters.AddWithValue("@p3",Vkod);
+            komut.ExecuteNonQuery();
+            baglan.baglanti.Close();
+
+        }
+
+        public bool Cevapvarmi(string gtc)
+        {
+            baglan.baglanti.Open();
+
+            SqlCommand komut = new SqlCommand("Select Count(*) from TblOgrenci_Video_Istatistik Where O_Tc_Kimlik=@p1", baglan.baglanti);
+            komut.Parameters.AddWithValue("@p1", gtc);
+            int ks = Convert.ToInt16(komut.ExecuteScalar());
+            if (ks > 0)
+            {
+                return true;
+            }
+            baglan.baglanti.Close();
+            return false;
+
+         }
+        }
     }
-}

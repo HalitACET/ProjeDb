@@ -13,10 +13,14 @@ namespace _29._03._2021_1
     public partial class Form6 : Form
     {
         string Vkod;
-        public Form6(string gvideokod)
+        string tcno;
+        string dkod;
+        public Form6(string gvideokod,string gtc,string gkod)
         {
             InitializeComponent();
             Vkod = gvideokod;
+            tcno = gtc;
+            dkod = gkod;
         }
         string dogru;
             int DogruSay ,YanlisSay;
@@ -38,8 +42,8 @@ namespace _29._03._2021_1
                 radioButton4.Text = dt.Rows[0]["Sec4"].ToString();
                 radioButton5.Text = dt.Rows[0]["Sec5"].ToString();
 
-            DogruSay =Convert.ToInt16( dt.Rows[0]["DogruSay"]);
-            YanlisSay =Convert.ToInt16( dt.Rows[0]["YanlisSay"]);
+            //DogruSay =Convert.ToInt16( dt.Rows[0]["DogruSay"]);
+            //YanlisSay =Convert.ToInt16( dt.Rows[0]["YanlisSay"]);
 
 
             
@@ -72,12 +76,13 @@ namespace _29._03._2021_1
             {
                 DBcrud cevaplar = new DBcrud();
                 cevaplar.Darttir(Vkod);
-                
+                cevaplar.ODarttir(tcno, dkod, Vkod);
             }
             else
             {
                 DBcrud cevaplar = new DBcrud();
                 cevaplar.Yarttir(Vkod);
+                cevaplar.OYarttir(tcno,dkod,Vkod);
             }
         }
     }

@@ -56,7 +56,7 @@ namespace _29._03._2021_1
             VideoTasiyici video = new VideoTasiyici();
             video.video= dataGridView1.CurrentRow.Cells[3].Value.ToString();
 
-            Form5 frm5 = new Form5(video);
+            Form5 frm5 = new Form5(video,label1.Text);
             
             frm5.Show();
             this.Hide();
